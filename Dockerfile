@@ -13,5 +13,5 @@ ADD . /app
 EXPOSE 80 443
 WORKDIR /app
 RUN bundle exec middleman build
-COPY build /usr/share/nginx/html
+RUN cp -r ./build/* /usr/share/nginx/html/
 CMD ["nginx", "-g", "daemon off;"]
