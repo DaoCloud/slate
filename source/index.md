@@ -446,7 +446,7 @@ This endpoint retrieves tenant main plan.
 > change tenant main Plan
 
 ```shell
-curl -X PUT -H "Content-Type: application/json" -d '{"plan_name":"dev8x"}' 'http://localhost:8000/v1/tenants/59113eda-e299-4412-77fb-36fc80b5e244/plans/main'
+curl -X PUT -H "Content-Type: application/json" -d '{"plan_name":"dev8x", "source": "daoweb", "remark": "some description"}' 'http://localhost:8000/v1/tenants/59113eda-e299-4412-77fb-36fc80b5e244/plans/main'
 ```
 
 > Make sure to replace `example.com` with API endpoint.
@@ -465,12 +465,20 @@ This endpoint change tenant main plan.
 
 `PUT http://example.com/v1/tenants/<ID>/plans/main`
 
+### URL Parameters
+
+Parameter | Description
+-------| -----------
+plan_name | main plan name
+source | the source of the requester (optional)
+remark | some texts the requester want to record (optional)
+
 ## add customized plan to tenant
 
 > add customized plan to tenant
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H -d '{"plan_name": "award", "expired_at_seconds": 1445854253}' 'http://localhost:8000/v1/tenants/02e28145-2cce-4a6e-afe6-51c70290efa1/plans'
+curl -X POST -H "Content-Type: application/json" -H -d '{"plan_name": "award", "expired_at_seconds": 1445854253, "source": "daoweb", "remark": "some description"}' 'http://localhost:8000/v1/tenants/02e28145-2cce-4a6e-afe6-51c70290efa1/plans'
 ```
 
 > Make sure to replace `example.com` with API endpoint.
@@ -488,6 +496,15 @@ This endpoint add customized plan to tenant.
 ### HTTP Request
 
 `POST http://example.com/v1/tenants/<ID>/plans`
+
+### URL Parameters
+
+Parameter | Description
+-------| -----------
+plan_name | plan name
+expired_at_seconds | expiration date
+source | the source of the requester (optional)
+remark | some texts the requester want to record (optional)
 
 ## remove customized plan from tenant
 
@@ -518,7 +535,7 @@ This endpoint remove customized plan from tenant.
 > use tenant quota
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"quota_name": "single_runtime", "usage": 1}' 'http://localhost:8000/v1/tenants/eb9ee595-94ec-4b76-9418-f5de51bb55a6/quotas/use'
+curl -X POST -H "Content-Type: application/json" -d '{"quota_name": "single_runtime", "usage": 1, "source": "daoweb", "remark": "some description"}' 'http://localhost:8000/v1/tenants/eb9ee595-94ec-4b76-9418-f5de51bb55a6/quotas/use'
 ```
 
 > Make sure to replace `example.com` with API endpoint.
@@ -542,12 +559,21 @@ This endpoint check and use tenant quota.
 
 `POST http://example.com/v1/tenants/<ID>/quotas/use`
 
+### URL Parameters
+
+Parameter | Description
+-------| -----------
+quota_name | quota name
+usage | usage
+source | the source of the requester (optional)
+remark | some texts the requester want to record (optional)
+
 ## release tenant quota
 
 > release tenant quota
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"quota_name": "quota_x", "usage": 1}' 'http://localhost:8000/v1/tenants/eb9ee595-94ec-4b76-9418-f5de51bb55a6/quotas/release'
+curl -X POST -H "Content-Type: application/json" -d '{"quota_name": "quota_x", "usage": 1, "source": "daoweb", "remark": "some description"}' 'http://localhost:8000/v1/tenants/eb9ee595-94ec-4b76-9418-f5de51bb55a6/quotas/release'
 ```
 
 > Make sure to replace `example.com` with API endpoint.
@@ -570,6 +596,15 @@ This endpoint check and release tenant quota.
 ### HTTP Request
 
 `POST http://example.com/v1/tenants/<ID>/quotas/release`
+
+### URL Parameters
+
+Parameter | Description
+-------| -----------
+quota_name | quota name
+usage | usage
+source | the source of the requester (optional)
+remark | some texts the requester want to record (optional)
 
 ## get tenant quota usage
 
